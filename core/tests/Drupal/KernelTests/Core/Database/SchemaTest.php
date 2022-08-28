@@ -1260,7 +1260,7 @@ class SchemaTest extends KernelTestBase {
     ]);
     $this->assertSame([], $method->invoke($this->schema, 'table_without_pk_2'));
 
-    // Test with non existing table.
+    // Test with nonexistent table.
     $this->assertFalse($method->invoke($this->schema, 'non_existing_table'));
   }
 
@@ -1481,7 +1481,7 @@ class SchemaTest extends KernelTestBase {
       $this->markTestSkipped("This test only runs for PostgreSQL.");
     }
 
-    // Test the method for a non existing extension.
+    // Test the method for a nonexistent extension.
     $this->assertFalse($this->schema->extensionExists('non_existing_extension'));
 
     // Test the method for an existing extension.

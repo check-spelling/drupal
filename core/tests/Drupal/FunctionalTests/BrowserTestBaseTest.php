@@ -713,7 +713,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
     $this->assertSession()->checkboxChecked('edit-checkbox-enabled');
     $this->assertSession()->checkboxNotChecked('edit-checkbox-disabled');
 
-    // Test that the assertion fails correctly with non-existent field id.
+    // Test that the assertion fails correctly with nonexistent field id.
     try {
       $this->assertSession()->checkboxNotChecked('incorrect_checkbox_id');
       $this->fail('The "incorrect_checkbox_id" field was found');

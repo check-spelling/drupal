@@ -122,7 +122,7 @@ class ValidatorsTest extends KernelTestBase {
       'settings' => ['__DEFAULT__'],
       'violations' => [],
     ];
-    $data['non-existent toolbar button'] = [
+    $data['nonexistent toolbar button'] = [
       'settings' => [
         'toolbar' => [
           'items' => [

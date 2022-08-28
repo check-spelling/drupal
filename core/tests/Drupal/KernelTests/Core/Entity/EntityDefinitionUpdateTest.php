@@ -375,7 +375,7 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
   /**
    * Tests creating and deleting a base field if entities exist.
    *
-   * This tests deletion when there are existing entities, but non-existent data
+   * This tests deletion when there are existing entities, but nonexistent data
    * for the field being deleted.
    *
    * @see testBaseFieldDeleteWithExistingData()
@@ -431,7 +431,7 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
   /**
    * Tests creating and deleting a bundle field if entities exist.
    *
-   * This tests deletion when there are existing entities, but non-existent data
+   * This tests deletion when there are existing entities, but nonexistent data
    * for the field being deleted.
    *
    * @see testBundleFieldDeleteWithExistingData()
@@ -1308,7 +1308,7 @@ class EntityDefinitionUpdateTest extends EntityKernelTestBase {
         ->setLabel(t('A new base field'))
         ->setInitialValueFromField('field_that_does_not_exist');
       $this->entityDefinitionUpdateManager->installFieldStorageDefinition('new_base_field', 'entity_test_update', 'entity_test', $storage_definition);
-      $this->fail('Using a non-existent field as initial value does not work.');
+      $this->fail('Using a nonexistent field as initial value does not work.');
     }
     catch (FieldException $e) {
       $this->assertEquals('Illegal initial value definition on new_base_field: The field field_that_does_not_exist does not exist.', $e->getMessage());

@@ -133,7 +133,7 @@ class ValidReferenceConstraintValidator extends ConstraintValidator implements C
       $valid_target_ids = $handler->validateReferenceableEntities($target_ids);
       if ($invalid_target_ids = array_diff($target_ids, $valid_target_ids)) {
         // For accuracy of the error message, differentiate non-referenceable
-        // and non-existent entities.
+        // and nonexistent entities.
         $existing_entities = $this->entityTypeManager->getStorage($target_type_id)->loadMultiple($invalid_target_ids);
         foreach ($invalid_target_ids as $delta => $target_id) {
           // Check if any of the invalid existing references are simply not
