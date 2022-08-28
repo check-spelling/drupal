@@ -1,0 +1,189 @@
+# See https://github.com/check-spelling/check-spelling/wiki/Configuration-Examples:-patterns
+
+# Google Search
+\bgoogle\.com/search\?[-\w=&+#.,]+
+
+# Automatically suggested patterns
+# hit-count: 5531 file-count: 1555
+# hex digits including css/html color classes:
+(?:[\\0][xX]|\\u|[uU]\+|#x?|\%23)[0-9a-fA-FgGrR_]{2,}(?:[uUlL]{0,3}|u\d+)\b
+
+# hit-count: 801 file-count: 87
+# URL escaped characters
+\%[0-9A-F]{2}
+
+# hit-count: 468 file-count: 27
+# hex runs
+\b[0-9a-fA-F]{16,}\b
+
+# hit-count: 457 file-count: 145
+# w3
+\bw3\.org/[-0-9a-zA-Z/#.]+
+
+# hit-count: 292 file-count: 49
+# data url in quotes
+([`'"])data:.*?(?:[A-Z]{3,}|[A-Z][a-z]{2,}|[a-z]{3,}).*\g{-1}
+\(data:.*?(?:[A-Z]{3,}|[A-Z][a-z]{2,}|[a-z]{3,}).*\)
+
+# hit-count: 270 file-count: 8
+# sha-... -- uses a fancy capture
+(['"]|&quot;)[0-9a-f]{40,}\g{-1}
+
+# hit-count: 183 file-count: 87
+# uuid:
+\b[0-9a-fA-F]{8}-(?:[0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}\b
+
+# hit-count: 179 file-count: 35
+# Non-English
+[a-zA-Z]*[ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź][a-zA-Z]{3}[a-zA-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź]*
+
+# hit-count: 119 file-count: 29
+# Update Lorem based on your content (requires `ge` and `w` from https://github.com/jsoref/spelling; and `review` from https://github.com/check-spelling/check-spelling/wiki/Looking-for-items-locally )
+# grep '^[^#].*Lorem' .github/actions/spelling/patterns.txt|perl -pne 's/.*i..\?://;s/\).*//' |tr '|' "\n"|sort -f |xargs -n1 ge|perl -pne 's/^[^:]*://'|sort -u|w|sed -e 's/ .*//'|w|review -
+# Warning, while `(?i)` is very neat and fancy, if you have some binary files that aren't proper unicode, you might run into:
+## Operation "substitution (s///)" returns its argument for non-Unicode code point 0x1C19AE (the code point will vary).
+## You could manually change `(?i)X...` to use `[Xx]...`
+# `(?i)` also seems to have bad interactions with other patterns...
+## or you could add the files to your `excludes` file (a version after 0.0.19 should identify the file path)
+# Lorem
+(?:\w|\s|[,.])*\b(?:Loreming)\b(?:\w|\s|[,.])*
+
+# hit-count: 31 file-count: 12
+# IServiceProvider
+\bI(?=(?:[A-Z][a-z]{2,})+\b)
+
+# hit-count: 27 file-count: 15
+\.replace\(/[^/\s"]*/[gim]*\s*,
+
+# hit-count: 24 file-count: 4
+# mailto urls
+mailto:[-a-zA-Z=;:/?%&0-9+@.]{3,}
+
+# hit-count: 22 file-count: 8
+# While you could try to match `http://` and `https://` by using `s?` in `https?://`, sometimes there
+# YouTube url
+\b(?:(?:www\.|)youtube\.com|youtu.be)/(?:channel/|embed/|user/|playlist\?list=|watch\?v=|v/|)[-a-zA-Z0-9?&=_]*
+
+youtube://[-a-zA-Z0-9?&=_]*
+
+# hit-count: 20 file-count: 10
+# version suffix <word>v#
+(?:(?<=[A-Z]{2})V|(?<=[a-z]{2}|[A-Z]{2})v)\d+(?:\b|(?=[a-zA-Z_]))
+
+# hit-count: 14 file-count: 13
+# stackexchange -- https://stackexchange.com/feeds/sites
+\b(?:askubuntu|serverfault|stack(?:exchange|overflow)|superuser).com/(?:questions/\w+/[-\w]+|a/)
+
+# hit-count: 14 file-count: 2
+# githubusercontent
+/[-a-z0-9]+\.githubusercontent\.com/[-a-zA-Z0-9?&=_\/.]*
+
+# hit-count: 12 file-count: 7
+# data url in parens
+\(data:[^)]*?(?:[A-Z]{3,}|[A-Z][a-z]{2,}|[a-z]{3,})[^)]*\)
+
+([`'"])image/png;base64,.*\g{-1}
+
+# hit-count: 10 file-count: 5
+# Google Fonts
+\bfonts\.(?:googleapis|gstatic)\.com/[-/?=:;+&0-9a-zA-Z]*
+
+# hit-count: 7 file-count: 3
+# Twitter status
+\btwitter\.com/[^/\s"')]*(?:/status/\d+(?:\?[-_0-9a-zA-Z&=]*|)|)
+
+# hit-count: 4 file-count: 1
+# tput arguments -- https://man7.org/linux/man-pages/man5/terminfo.5.html -- technically they can be more than 5 chars long...
+\btput\s+(?:(?:-[SV]|-T\s*\w+)\s+)*\w{3,5}\b
+
+# hit-count: 3 file-count: 3
+# JavaScript regular expressions
+/.*/[gim]*\.test\(
+
+# hit-count: 2 file-count: 2
+# IPv6
+\b(?:[0-9a-fA-F]{0,4}:){3,7}[0-9a-fA-F]{0,4}\b
+
+# hit-count: 2 file-count: 2
+# tar arguments
+\b(?:\\n|)tar(?:\.exe|)(?:(?:\s+--[-a-zA-Z]+|\s+-[a-zA-Z]+|\s[ABGJMOPRSUWZacdh-pr-xz]+\b)(?:=[^ ]*|))+
+
+# hit-count: 1 file-count: 1
+# magnet urls
+magnet:[?=:\w]+
+
+# hit-count: 1 file-count: 1
+# microsoft
+\b(?:https?://|)(?:(?:download\.visualstudio|docs|msdn2?|research)\.microsoft|blogs\.msdn)\.com/[-_a-zA-Z0-9()=./%]*
+
+# Automatically suggested patterns
+# hit-count: 1 file-count: 1
+# git.io
+\bgit\.io/[0-9a-zA-Z]+
+
+# unicode
+\\[ux]\{[0-9A-F]{3,6}\}
+
+# hex
+\\x[0-9A-F]{2}
+
+# doc links to urls -- we trust the url composers
+\@see https?://[-\w./?#%]+
+
+'=\?[Uu][Tt][Ff]-8[^']*'
+
+\b__[a-z0-9]+__\b
+'form_(?:token|build_id)'\] = '[^']*'
+'form_action_\w+'
+cspell:ignore.*$
+'langcode' => '(?!en).*
+ק[a-z]+
+'translation' => .*
+field_chancellor_value' => ".*
+assertSame\(['"].*?['"], \$(?:config_|)translation
+assertSame\(['"](?:\w\w - |)['\w]+['"], \$entity
+'vocablocalized', '[^']+'
+Javascript[A-Za-z]+
+[A-Za-z]+Javascript
+expected_hmac' => '[^']*'
+__key', 'drupal_[^']*'
+encoded_path = "[^"]*"
+\w+\.po\b['"], ".*
+default_config_hash: \S+
+>translations\['.*?'\] = '.*?'
+translations\]\[\d+\]["'] => (['"]).*\g{-1}
+(?:=>|,) (["']).*?\b[Ll]e\b.+?\g{-1}
+str_split\('[^']*'\)
+\btoken="?[-\w]+['"]
+_id\s*=\s*'\w+\d'
+public::?//[-\w/.&]+
+'long_key:[^']*'
+'pass' => '\$[^']*'
+'value' => 's:[^']*'
+^.*zartan.*$
+[Hh]ash' => '[^']*'
+'sid' => '[^']*'
+
+# VERBing
+\b[A-Z]{2,}ing
+
+\\[Rr](?:elation|esource|esponsive)
+\\[Ss](?:ession)
+\\[Tt](?:axonomy|elephone|ests|oken|oolbar)
+
+# acceptable duplicates
+# ls directory listings
+[-bcdlpsw](?:[-r][-w][-sx]){3}\s+\d+\s+(\S+)\s+\g{-1}\s+\d+\s+
+# C types
+\s(auto|center|DASH|details|had|long|LONG|solid|transparent)(?:\s+\g{-1})+\s
+# javadoc / .net
+(?:[\\@](?:groupname|param)|(?:public|private)(?:\s+static|\s+readonly)*)\s+(\w+)\s+\g{-1}\s
+
+# Commit message -- Signed-off-by and friends
+^\s*(?:(?:Based-on-patch|Co-authored|Helped|Mentored|Reported|Reviewed|Signed-off)-by|Thanks-to): (?:[^<]*<[^>]*>|[^<]*)\s*$
+
+# Autogenerated revert commit message
+^This reverts commit [0-9a-f]{40}\.$
+
+# ignore long runs of a single character:
+\b([A-Za-z])\g{-1}{3,}\b
