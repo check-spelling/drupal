@@ -877,7 +877,7 @@ class SchemaTest extends KernelTestBase {
     $this->assertEquals(['other_test_field'], $find_primary_key_columns->invoke($this->schema, $table_name));
 
     // Test that adding a field with a primary key will work even with a
-    // pre-existing primary key.
+    // preexisting primary key.
     $this->schema->addField($table_name, 'test_field', ['type' => 'int', 'default' => 0, 'not null' => TRUE], ['primary key' => $initial_primary_key]);
     $this->assertTrue($this->schema->fieldExists($table_name, 'test_field'));
     $this->assertEquals($initial_primary_key, $find_primary_key_columns->invoke($this->schema, $table_name));

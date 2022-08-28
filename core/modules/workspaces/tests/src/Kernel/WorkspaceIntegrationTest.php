@@ -374,7 +374,7 @@ class WorkspaceIntegrationTest extends KernelTestBase {
     $this->initializeWorkspacesModule();
     $this->createWorkspaceHierarchy();
 
-    // The two pre-existing nodes are not overridden in any non-default
+    // The two preexisting nodes are not overridden in any non-default
     // workspace.
     $expected_workspace_association = [
       'stage' => [],
@@ -489,7 +489,7 @@ class WorkspaceIntegrationTest extends KernelTestBase {
     $this->initializeWorkspacesModule();
     $this->switchToWorkspace('stage');
 
-    // Add a workspace-specific revision to a pre-existing node.
+    // Add a workspace-specific revision to a preexisting node.
     $node = $this->entityTypeManager->getStorage('node')->load(2);
     $node->title->value = 'stage - 2 - r3 - published';
     $node->save();
