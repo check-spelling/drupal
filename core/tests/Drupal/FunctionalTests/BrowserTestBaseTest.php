@@ -57,7 +57,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
     $text = $this->getTextContent();
     $this->assertStringContainsString('Test page text.', $text);
     $this->assertStringNotContainsString('</html>', $text);
-    // Ensure Drupal Javascript settings are not part of the page text.
+    // Ensure Drupal JavaScript settings are not part of the page text.
     $this->assertArrayHasKey('currentPathIsAdmin', $this->getDrupalSettings()['path']);
     $this->assertStringNotContainsString('currentPathIsAdmin', $text);
 
