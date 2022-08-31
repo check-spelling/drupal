@@ -7,7 +7,7 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\Annotation\Target;
 use Drupal\Tests\Component\Annotation\Doctrine\Fixtures\AnnotationWithConstants;
 use Drupal\Tests\Component\Annotation\Doctrine\Fixtures\ClassWithConstants;
-use Drupal\Tests\Component\Annotation\Doctrine\Fixtures\IntefaceWithConstants;
+use Drupal\Tests\Component\Annotation\Doctrine\Fixtures\InterfaceWithConstants;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -793,12 +793,12 @@ DOCBLOCK;
             ClassWithConstants::SOME_VALUE
         );
         $provider[] = array(
-            '@AnnotationWithConstants(IntefaceWithConstants::SOME_VALUE)',
-            IntefaceWithConstants::SOME_VALUE
+            '@AnnotationWithConstants(InterfaceWithConstants::SOME_VALUE)',
+            InterfaceWithConstants::SOME_VALUE
         );
         $provider[] = array(
-            '@AnnotationWithConstants(\Drupal\Tests\Component\Annotation\Doctrine\Fixtures\IntefaceWithConstants::SOME_VALUE)',
-            IntefaceWithConstants::SOME_VALUE
+            '@AnnotationWithConstants(\Drupal\Tests\Component\Annotation\Doctrine\Fixtures\InterfaceWithConstants::SOME_VALUE)',
+            InterfaceWithConstants::SOME_VALUE
         );
         $provider[] = array(
             '@AnnotationWithConstants({AnnotationWithConstants::STRING, AnnotationWithConstants::INTEGER, AnnotationWithConstants::FLOAT})',
@@ -812,26 +812,26 @@ DOCBLOCK;
         );
         $provider[] = array(
             '@AnnotationWithConstants({
-                Drupal\Tests\Component\Annotation\Doctrine\Fixtures\IntefaceWithConstants::SOME_KEY = AnnotationWithConstants::INTEGER
+                Drupal\Tests\Component\Annotation\Doctrine\Fixtures\InterfaceWithConstants::SOME_KEY = AnnotationWithConstants::INTEGER
              })',
-            array(IntefaceWithConstants::SOME_KEY => AnnotationWithConstants::INTEGER)
+            array(InterfaceWithConstants::SOME_KEY => AnnotationWithConstants::INTEGER)
         );
         $provider[] = array(
             '@AnnotationWithConstants({
-                \Drupal\Tests\Component\Annotation\Doctrine\Fixtures\IntefaceWithConstants::SOME_KEY = AnnotationWithConstants::INTEGER
+                \Drupal\Tests\Component\Annotation\Doctrine\Fixtures\InterfaceWithConstants::SOME_KEY = AnnotationWithConstants::INTEGER
              })',
-            array(IntefaceWithConstants::SOME_KEY => AnnotationWithConstants::INTEGER)
+            array(InterfaceWithConstants::SOME_KEY => AnnotationWithConstants::INTEGER)
         );
         $provider[] = array(
             '@AnnotationWithConstants({
                 AnnotationWithConstants::STRING = AnnotationWithConstants::INTEGER,
                 ClassWithConstants::SOME_KEY = ClassWithConstants::SOME_VALUE,
-                Drupal\Tests\Component\Annotation\Doctrine\Fixtures\ClassWithConstants::SOME_KEY = IntefaceWithConstants::SOME_VALUE
+                Drupal\Tests\Component\Annotation\Doctrine\Fixtures\ClassWithConstants::SOME_KEY = InterfaceWithConstants::SOME_VALUE
              })',
             array(
                 AnnotationWithConstants::STRING => AnnotationWithConstants::INTEGER,
                 ClassWithConstants::SOME_KEY    => ClassWithConstants::SOME_VALUE,
-                ClassWithConstants::SOME_KEY    => IntefaceWithConstants::SOME_VALUE
+                ClassWithConstants::SOME_KEY    => InterfaceWithConstants::SOME_VALUE
             )
         );
         $provider[] = array(
@@ -861,7 +861,7 @@ DOCBLOCK;
         $parser = $this->createTestParser();
         $parser->setImports(array(
             'classwithconstants'        => 'Drupal\Tests\Component\Annotation\Doctrine\Fixtures\ClassWithConstants',
-            'intefacewithconstants'     => 'Drupal\Tests\Component\Annotation\Doctrine\Fixtures\IntefaceWithConstants',
+            'interfacewithconstants'    => 'Drupal\Tests\Component\Annotation\Doctrine\Fixtures\InterfaceWithConstants',
             'annotationwithconstants'   => 'Drupal\Tests\Component\Annotation\Doctrine\Fixtures\AnnotationWithConstants'
         ));
 
